@@ -1,6 +1,6 @@
 # Notes-App
 
-Note taking app inspired by and followed through the Coding in Flow. Written in Kotlin and implements the new androidx libraries. Tried staying loyal to naming and structure of the example application to make it easier to compare and understand.
+Note taking app inspired by the Coding in Flow. Rewritten in Kotlin and implements the new androidx libraries. Tried staying loyal to naming and structure of the example application to make it easier to compare and understand.
 
 First video for the series can be found [here].
 

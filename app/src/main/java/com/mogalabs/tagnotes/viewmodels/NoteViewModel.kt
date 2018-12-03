@@ -27,7 +27,7 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
         repository.deleteAllNotes()
     }
 
-    fun getAllNotes(): LiveData<List<Note>>{
+    fun getAllNotes(): LiveData<List<Note>> {
         return allNotes
     }
 }

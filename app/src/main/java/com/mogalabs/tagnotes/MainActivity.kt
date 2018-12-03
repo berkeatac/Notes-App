@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         buttonAddNote.setOnClickListener {
-            startActivityForResult(Intent(this, AddEditNoteActivity::class.java),
+            startActivityForResult(
+                Intent(this, AddEditNoteActivity::class.java),
                 ADD_NOTE_REQUEST
             )
         }
@@ -50,19 +51,19 @@ class MainActivity : AppCompatActivity() {
         })
 
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT.or(ItemTouchHelper.RIGHT)) {
-                override fun onMove(
-                    recyclerView: RecyclerView,
-                    viewHolder: RecyclerView.ViewHolder,
-                    target: RecyclerView.ViewHolder
-                ): Boolean {
-                    return false
-                }
-
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    noteViewModel.delete(adapter.getNoteAt(viewHolder.adapterPosition))
-                    Toast.makeText(baseContext, "Note Deleted!", Toast.LENGTH_SHORT).show()
-                }
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
             }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                noteViewModel.delete(adapter.getNoteAt(viewHolder.adapterPosition))
+                Toast.makeText(baseContext, "Note Deleted!", Toast.LENGTH_SHORT).show()
+            }
+        }
         ).attachToRecyclerView(recycler_view)
 
         adapter.setOnItemClickListener(object : NoteAdapter.OnItemClickListener {
@@ -111,7 +112,7 @@ class MainActivity : AppCompatActivity() {
         } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == Activity.RESULT_OK) {
             val id = data?.getIntExtra(AddEditNoteActivity.EXTRA_ID, -1)
 
-            if(id == -1) {
+            if (id == -1) {
                 Toast.makeText(this, "Could not update! Error!", Toast.LENGTH_SHORT).show()
             }
 

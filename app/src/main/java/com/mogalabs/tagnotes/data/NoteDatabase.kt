@@ -10,17 +10,19 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 @Database(entities = [Note::class], version = 1)
 abstract class NoteDatabase : RoomDatabase() {
 
-    abstract fun noteDao() : NoteDao
+    abstract fun noteDao(): NoteDao
 
 
     companion object {
-        private var instance : NoteDatabase? = null
+        private var instance: NoteDatabase? = null
 
         fun getInstance(context: Context): NoteDatabase? {
             if (instance == null) {
                 synchronized(NoteDatabase::class) {
-                    instance = Room.databaseBuilder(context.applicationContext,
-                        NoteDatabase::class.java, "note_database")
+                    instance = Room.databaseBuilder(
+                        context.applicationContext,
+                        NoteDatabase::class.java, "note_database"
+                    )
                         .fallbackToDestructiveMigration() // when version increments, it migrates (deletes db and creates new) - else it crashes
                         .addCallback(roomCallback)
                         .build()
@@ -33,7 +35,7 @@ abstract class NoteDatabase : RoomDatabase() {
             instance = null
         }
 
-        private val roomCallback = object: RoomDatabase.Callback() {
+        private val roomCallback = object : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
                 PopulateDbAsyncTask(instance)

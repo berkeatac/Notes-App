@@ -4,17 +4,17 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "note_table")
-data class Note (
+data class Note(
 
-    var title : String,
+    var title: String,
 
-    var description : String,
+    var description: String,
 
-    var priority : Int
+    var priority: Int
 ) {
 
     //does it matter if these are private or not?
     @PrimaryKey(autoGenerate = true)
-    var id : Int = 0
+    var id: Int = 0
 
 }
